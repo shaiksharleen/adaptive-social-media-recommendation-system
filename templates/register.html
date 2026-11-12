@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Adaptive Social Media</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #5b3cc4;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            color: red;
+            font-size: 14px;
+        }
+
+        a {
+            color: #6544bd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .links {
+            margin-top: 22px;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="icon">📱</div>
+
+        <h1>Create Your Account</h1>
+
+        <p class="subtitle">
+            Join us and discover content based on your interests.
+        </p>
+
+        <form method="POST">
+
+            <p class="message">{{ message }}</p>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password (minimum 8 characters)"
+                required
+                minlength="8"
+            >
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <div class="links">
+            <p>Already registered? <a href="/login">Login</a></p>
+            <a href="/">← Back to Home</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Social Media</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f3fa;
+            margin: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .welcome-card {
+            background: white;
+            padding: 40px 25px;
+            margin-bottom: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .welcome-card h2 {
+            color: #5b3cc4;
+            font-size: 28px;
+        }
+
+        .welcome-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 13px 28px;
+            margin: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #6544bd;
+            border: 2px solid #6544bd;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .feature-card h3 {
+            color: #6544bd;
+        }
+
+        .feature-icon {
+            font-size: 38px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: #eeeaf8;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            .welcome-card {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📱 Adaptive Social Media</h1>
+        <p>Your Interests. Your Content. Your Experience.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="welcome-card">
+
+            <h2>Welcome to Your Personalized Social World!</h2>
+
+            <p>
+                Discover interesting posts, explore new topics,
+                and enjoy content based on your selected interests
+                and previous likes.
+            </p>
+
+            <div class="buttons">
+                <a href="/register" class="btn">Create Account</a>
+                <a href="/login" class="btn secondary-btn">Login</a>
+            </div>
+
+        </div>
+
+        <div class="features">
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized Interests</h3>
+                <p>
+                    Select your favourite categories and
+                    discover content that matches your interests.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h3>Learn From Your Likes</h3>
+                <p>
+                    The system uses your liked posts to identify
+                    the categories you enjoy.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>Smart Recommendations</h3>
+                <p>
+                    Posts receive recommendation scores based on
+                    your interests and liked categories.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Adaptive Social Media Recommendation System</p>
+        <p>Academic Project | 2026–2027</p>
+    </footer>
+
+</body>
+</html>

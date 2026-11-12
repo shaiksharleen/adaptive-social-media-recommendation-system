@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Interests | Adaptive Social Media</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+            color: #303b56;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5146d8, #8274f5);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #eeeeff;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            color: #5146d8;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: #788197;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 15px;
+        }
+
+        .category {
+            border: 2px solid #e6e8f1;
+            padding: 17px;
+            border-radius: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+            background: #fafaff;
+        }
+
+        .category:hover {
+            border-color: #8274f5;
+            background: #f1efff;
+        }
+
+        .category:has(input:checked) {
+            border-color: #5146d8;
+            background: #eeecff;
+        }
+
+        .category input {
+            width: 18px;
+            height: 18px;
+            accent-color: #5146d8;
+            cursor: pointer;
+        }
+
+        .category span {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .save-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #5146d8;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .save-btn:hover {
+            background: #382caf;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #5146d8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #858da0;
+            font-size: 13px;
+        }
+
+        @media(max-width: 500px) {
+            .card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎯 Customize Your Feed</h1>
+    <p>Choose your favourite topics and discover personalized content.</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>My Interests</h2>
+
+        <p class="description">
+            Select the topics you enjoy.
+            Our recommendation system uses your interests
+            to suggest relevant posts.
+        </p>
+
+        <form method="POST">
+
+            <div class="categories">
+
+                {% for category in categories %}
+
+                <label class="category">
+
+                    <input
+                        type="checkbox"
+                        name="interests"
+                        value="{{ category }}"
+                        {% if category in selected %}checked{% endif %}
+                    >
+
+                    <span>{{ category }}</span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+            <button type="submit" class="save-btn">
+                💾 Save My Interests
+            </button>
+
+        </form>
+
+        <a href="/dashboard" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+    Adaptive Social Media Recommendation System |
+    Academic Project 2026–2027
+</footer>
+
+</body>
+</html>
