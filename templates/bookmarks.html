@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookmarks</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            color: #26324a;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5146d8, #8274f5);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .post {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .post h3 {
+            color: #5146d8;
+        }
+
+        .category {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        button {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #5146d8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔖 My Bookmarks</h1>
+    <p>Welcome, {{ name }}!</p>
+</header>
+
+<div class="container">
+
+    <h2>My Saved Posts</h2>
+
+    {% for post in posts %}
+
+    <div class="post">
+        <h3>{{ post.title }}</h3>
+
+        <p class="category">{{ post.category }}</p>
+
+        <p>{{ post.content }}</p>
+
+        <form action="/remove_bookmark/{{ post.id }}" method="POST">
+            <button type="submit">Remove Bookmark</button>
+        </form>
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+        <h3>No bookmarks yet!</h3>
+        <p>Save interesting posts to view them here.</p>
+    </div>
+
+    {% endfor %}
+
+    <p><a href="/dashboard">← Back to Dashboard</a></p>
+
+</div>
+
+</body>
+</html>

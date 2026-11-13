@@ -107,7 +107,27 @@
         .search-box:focus {
             border-color: #685ce5;
         }
+        .category-filters {
+   	     display: flex;
+             flex-wrap: wrap;
+    	     gap: 10px;
+    	     margin-bottom: 22px;
+	}
 
+	.category-filters button {
+    	     padding: 9px 16px;
+    	     border: none;
+    	     border-radius: 20px;
+    	     background: #eeecff;
+    	     color: #5146d8;
+    	     cursor: pointer;
+    	     font-weight: bold;
+	}
+
+	.category-filters button:hover {
+    	     background: #5146d8;
+    	     color: white;
+	}
         .post {
             background: white;
             padding: 25px;
@@ -224,9 +244,10 @@
     </div>
 
     <nav>
-        <a href="/dashboard">Home</a>
-        <a href="/interests">My Interests</a>
-        <a href="/logout">Logout</a>
+    	<a href="/dashboard">Home</a>
+    	<a href="/interests">My Interests</a>
+    	<a href="/bookmarks">🔖 My Bookmarks</a>
+    	<a href="/logout">Logout</a>
     </nav>
 </header>
 
@@ -254,7 +275,21 @@
         placeholder="🔍 Search posts by title or category..."
         onkeyup="searchPosts()"
     >
-
+    <div class="category-filters">
+    	<button onclick="filterCategory('All')">All</button>
+    	<button onclick="filterCategory('Technology')">Technology</button>
+    	<button onclick="filterCategory('Artificial Intelligence')">AI</button>
+    	<button onclick="filterCategory('Programming')">Programming</button>
+    	<button onclick="filterCategory('Education')">Education</button>
+    	<button onclick="filterCategory('Science')">Science</button>
+    	<button onclick="filterCategory('Sports')">Sports</button>
+    	<button onclick="filterCategory('Movies & Entertainment')">Movies</button>
+    	<button onclick="filterCategory('Music')">Music</button>
+    	<button onclick="filterCategory('Travel')">Travel</button>
+    	<button onclick="filterCategory('Health & Fitness')">Health</button>
+    	<button onclick="filterCategory('Food')">Food</button>
+    	<button onclick="filterCategory('News')">News</button>
+    </div>
     <div id="postsContainer">
 
         {% for post in posts %}
@@ -279,11 +314,11 @@
                 💡 {{ post.reason }}
             </p>
 
-            <form action="/like/{{ post.id }}" method="POST">
-                <button type="submit" class="like-btn">
-                    ❤️ Like Post
-                </button>
-            </form>
+            <form action="/bookmark/{{ post.id }}" method="POST">
+    		<button type="submit" class="like-btn">
+        	    🔖 Save Bookmark
+    		</button>
+	    </form>
 
         </div>
 
@@ -319,6 +354,22 @@
                 text.includes(input) ? "block" : "none";
         });
     }
+    function filterCategory(category) {
+    	let posts = document.querySelectorAll(".post");
+
+    	posts.forEach(function(post) {
+        	let postCategory = post.querySelector(".category")
+            	.innerText.trim();
+
+        	if (category === "All" || postCategory === category) {
+            	post.style.display = "block";
+        	} else {
+            	    post.style.display = "none";
+        	}
+    	});
+
+    	document.getElementById("searchInput").value = "";
+}
 </script>
 
 </body>

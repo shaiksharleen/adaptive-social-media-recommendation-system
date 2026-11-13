@@ -42,35 +42,36 @@ def init_db():
 
 init_db()
 # Sample social media posts
+# Sample social media posts
 posts = [
     {
         "id": 1,
         "title": "Introduction to Python",
-        "category": "Technology",
+        "category": "Programming",
         "content": "Learn Python programming from the basics."
     },
     {
         "id": 2,
         "title": "Artificial Intelligence",
-        "category": "AI",
+        "category": "Artificial Intelligence",
         "content": "Discover how AI is changing our world."
     },
     {
         "id": 3,
         "title": "Cricket Highlights",
         "category": "Sports",
-        "content": "Explore the latest cricket news."
+        "content": "Explore exciting cricket news and match highlights."
     },
     {
         "id": 4,
         "title": "Latest Movie Reviews",
-        "category": "Movies",
+        "category": "Movies & Entertainment",
         "content": "Read reviews of popular movies."
     },
     {
         "id": 5,
         "title": "Machine Learning Basics",
-        "category": "AI",
+        "category": "Artificial Intelligence",
         "content": "Understand how machines learn from data."
     },
     {
@@ -94,13 +95,13 @@ posts = [
     {
         "id": 9,
         "title": "Healthy Lifestyle Tips",
-        "category": "Health",
+        "category": "Health & Fitness",
         "content": "Explore simple ways to stay healthy."
     },
     {
         "id": 10,
         "title": "Exploring Artificial Intelligence",
-        "category": "Technology",
+        "category": "Artificial Intelligence",
         "content": "Discover how AI is transforming everyday life."
     },
     {
@@ -108,14 +109,126 @@ posts = [
         "title": "Cybersecurity Awareness",
         "category": "Technology",
         "content": "Learn simple ways to protect your digital information."
+    },
+    {
+        "id": 12,
+        "title": "Python Programming Projects",
+        "category": "Programming",
+        "content": "Explore beginner-friendly Python projects."
+    },
+    {
+        "id": 13,
+        "title": "Future of Robotics",
+        "category": "Science",
+        "content": "Discover how robots are transforming industries."
+    },
+    {
+        "id": 14,
+        "title": "Space Exploration",
+        "category": "Science",
+        "content": "Explore planets, galaxies and space missions."
+    },
+    {
+        "id": 15,
+        "title": "Football World Updates",
+        "category": "Sports",
+        "content": "Catch up on football matches and tournaments."
+    },
+    {
+        "id": 16,
+        "title": "Olympic Games",
+        "category": "Sports",
+        "content": "Discover inspiring Olympic sports stories."
+    },
+    {
+        "id": 17,
+        "title": "Best Educational Websites",
+        "category": "Education",
+        "content": "Find useful websites for learning new skills."
+    },
+    {
+        "id": 18,
+        "title": "Online Learning Tips",
+        "category": "Education",
+        "content": "Improve your learning experience with online resources."
+    },
+    {
+        "id": 19,
+        "title": "Fitness at Home",
+        "category": "Health & Fitness",
+        "content": "Try simple exercises and home workouts."
+    },
+    {
+        "id": 20,
+        "title": "Mental Wellness",
+        "category": "Health & Fitness",
+        "content": "Learn about stress management and healthy habits."
+    },
+    {
+        "id": 21,
+        "title": "Popular Music Trends",
+        "category": "Music",
+        "content": "Explore popular songs and music trends."
+    },
+    {
+        "id": 22,
+        "title": "Learn About Musical Instruments",
+        "category": "Music",
+        "content": "Discover different musical instruments and sounds."
+    },
+    {
+        "id": 23,
+        "title": "Beautiful Places to Visit",
+        "category": "Travel",
+        "content": "Explore amazing destinations around the world."
+    },
+    {
+        "id": 24,
+        "title": "Travel Photography",
+        "category": "Travel",
+        "content": "Learn how to capture memorable travel moments."
+    },
+    {
+        "id": 25,
+        "title": "Healthy Indian Food",
+        "category": "Food",
+        "content": "Discover delicious and nutritious Indian meals."
+    },
+    {
+        "id": 26,
+        "title": "Easy Cooking Recipes",
+        "category": "Food",
+        "content": "Try simple recipes that you can prepare at home."
+    },
+    {
+        "id": 27,
+        "title": "Today's Technology News",
+        "category": "News",
+        "content": "Stay informed about technology developments."
+    },
+    {
+        "id": 28,
+        "title": "Science Discoveries",
+        "category": "News",
+        "content": "Read about interesting scientific discoveries."
+    },
+    {
+        "id": 29,
+        "title": "Movies Coming Soon",
+        "category": "Movies & Entertainment",
+        "content": "Explore upcoming movies and entertainment releases."
+    },
+    {
+        "id": 30,
+        "title": "Latest Smartphone Innovations",
+        "category": "Technology",
+        "content": "Discover new smartphone features and innovations."
     }
-
-
 ]
-
 # Store user interests and likes temporarily
 user_interests = {}
 user_likes = {}
+user_bookmarks = {}
 
 @app.route("/")
 def home():
@@ -209,18 +322,27 @@ def dashboard():
             score += 3
 
         # Identify why the post is recommended
+        # Explain why the post is recommended
+	        # Explain why the post is recommended
         reasons = []
 
         if post["category"] in interests:
-            reasons.append("Based on your selected interests")
+            reasons.append(
+                f"Matches your selected interest: {post['category']}"
+            )
 
         if post["category"] in liked_categories:
-            reasons.append("Based on posts you liked")
+            reasons.append(
+                f"You previously liked posts in {post['category']}"
+            )
+
+        if not reasons:
+            reasons.append("Discover something new!")
 
         recommended_posts.append({
             **post,
             "score": score,
-            "reason": " & ".join(reasons) if reasons else "Suggested for you"
+            "reason": " & ".join(reasons)
         })
 
     # Show the highest-scoring posts first
@@ -247,7 +369,20 @@ def interests():
 
         return redirect(url_for("dashboard"))
 
-    categories = ["Technology", "AI", "Sports", "Movies"]
+    categories = [
+    "Technology",
+    "Artificial Intelligence",
+    "Programming",
+    "Education",
+    "Science",
+    "Sports",
+    "Movies & Entertainment",
+    "Music",
+    "Travel",
+    "Health & Fitness",
+    "Food",
+    "News"
+]
 
     return render_template(
         "interests.html",
@@ -272,6 +407,57 @@ def like_post(post_id):
 
     return redirect(url_for("dashboard"))
 
+@app.route("/bookmark/<int:post_id>", methods=["POST"])
+def bookmark_post(post_id):
+    if "email" not in session:
+        return redirect(url_for("login"))
+
+    if not any(post["id"] == post_id for post in posts):
+        return "Post not found", 404
+
+    email = session["email"]
+
+    if email not in user_bookmarks:
+        user_bookmarks[email] = []
+
+    if post_id not in user_bookmarks[email]:
+        user_bookmarks[email].append(post_id)
+
+    return redirect(url_for("dashboard"))
+
+
+@app.route("/remove_bookmark/<int:post_id>", methods=["POST"])
+def remove_bookmark(post_id):
+    if "email" not in session:
+        return redirect(url_for("login"))
+
+    email = session["email"]
+
+    if email in user_bookmarks and post_id in user_bookmarks[email]:
+        user_bookmarks[email].remove(post_id)
+
+    return redirect(url_for("bookmarks"))
+
+
+@app.route("/bookmarks")
+def bookmarks():
+    if "email" not in session:
+        return redirect(url_for("login"))
+
+    email = session["email"]
+
+    saved_ids = user_bookmarks.get(email, [])
+
+    saved_posts = [
+        post for post in posts
+        if post["id"] in saved_ids
+    ]
+
+    return render_template(
+        "bookmarks.html",
+        name=session["name"],
+        posts=saved_posts
+    )
 
 @app.route("/logout")
 def logout():
